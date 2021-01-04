@@ -11,5 +11,6 @@ class U(metaclass=Meta):
     def __init__(self):
         super().__init__()
 
-a = U()
-print(type(a))
+if __name__ == '__main__':
+    a = U()
+    print(type(a))

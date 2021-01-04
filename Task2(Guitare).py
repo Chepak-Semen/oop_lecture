@@ -13,4 +13,3 @@ class String:
 
     def talk(self):
         print(f"I`m guitar with {self.count_of_string.strings_count} strings and they are {self.type_of_string}")
-

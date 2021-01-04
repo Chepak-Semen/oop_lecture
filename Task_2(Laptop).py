@@ -11,5 +11,3 @@ class Os:
         self.type = 'Windows'
         self.version = 'Xp'
         self.updates = False
-
-
