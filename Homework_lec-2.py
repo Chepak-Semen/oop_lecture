@@ -59,12 +59,15 @@ class Human:
         self.money = money
         self.have_home = have_home
 
+    def __str__(self):
+        return f'__________________________________\n' \
+               f'name : {self.name} \nage : {self.age} \nmoney : {self.money}$\nHave home : {self.is_home()}\n' \
+               f'__________________________________\n'
+
     def is_home(self):
         return 'I`ve Home' if self.have_home is True else 'I don`t have Home'
 
-    def get_info(self):
-        print(
-            f'-My name is {self.name}, I`m {self.age} years old. I have {self.money}$, {self.is_home()}')
+
 
     def make_money(self):
         print(f'{self.name} make money')
@@ -72,11 +75,11 @@ class Human:
 
     def buy_house(self, home: Home):
         if self.money > home.cost:
-            print(f'{self.name} buy house {house} for {house.cost}$')
-            self.money -= house.cost
+            print(f'{self.name} buy house {home} for {home.cost}$')
+            self.money -= home.cost
             self.have_home = True
         else:
-            print(f'{self.name} can`t buy a house {house} because he need {house.cost - self.money}$ more')
+            print(f'{self.name} can`t buy a house {home} because he need {home.cost - self.money}$ more')
 
 
 class Person(Human):
@@ -96,9 +99,10 @@ class Realtor(metaclass=Singleton):
         self.client = client
 
     def houses_info(self):
-        print(f'Realtor has a houses:')
+        print(f'________________________________________\nRealtor has a houses:')
         for i in self.houses:
             print(f'House{self.houses.index(i) + 1} {i.area}m^2 and it cost {i.cost}$')
+        print(f'________________________________________')
 
     def give_discount(self):
         print(f'Realtor: I give you a {self.discount}% discount for house you want')
@@ -117,15 +121,15 @@ class Realtor(metaclass=Singleton):
 if __name__ == '__main__':
     person_Tom = Person(name='Tom', age=34)
     realtor_Sasha = Realtor(name='Sasha', client=person_Tom)
-    person_Tom.get_info()
+    print(person_Tom)
     person_Tom.make_money()
-    person_Tom.get_info()
+    print(person_Tom)
     realtor_Sasha.houses_info()
-    realtor_Sasha.give_discount()
     realtor_Sasha.steal()
     house = choice(realtor_Sasha.houses)
     house.apply_discount(realtor_Sasha.give_discount())
     realtor_Sasha.houses_info()
     person_Tom.buy_house(house)
     realtor_Sasha.houses.remove(house)
-    person_Tom.get_info()
+    print(person_Tom)
+
